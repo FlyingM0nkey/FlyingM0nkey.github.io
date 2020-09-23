@@ -119,11 +119,11 @@ hydra -P rockyou.txt $ip vnc -V
 
 Zip files can have passwords set on them, but we have a way to crack those, too! We will use JTR for this as it seems to be a bit more forgiving, but first, we need to create a hash that John can understand and zip2john can do this for us.
 ```shell
-zip2john tom.zip | cut -d ':' -f 2 > hashtom.txt
+zip2john tom.zip | cut -d ':' -f 2 > hash.txt
 ```
 Then use john to crack the zip password.
 ```shell
-john hashtom --format=PKZIP --wordlist=/root/RockYou/rockyou.txt
+john hash.text --format=PKZIP --wordlist=/root/RockYou/rockyou.txt
 ```
 ![Zip](/assets/img/Pass/zippy.png)
 
