@@ -144,8 +144,8 @@ Here we have recovered a private key, but it clearly says it's encrypted. If we 
 
 I can't remember where ssh2john lives, so I locate it and use it's full path from my RockYou directory. Once ssh2john has run, we can use JTR to crack the password as usual.
 ```shell
-/usr/share/john/ssh2john.py
 python /usr/share/john/ssh2john.py id_rsa > id_john
+john id_john --wordlist=rockyou.txt
 ```
 
 ![SSH2](/assets/img/Pass/ssh2.png)
