@@ -123,7 +123,7 @@ zip2john tom.zip | cut -d ':' -f 2 > hash.txt
 ```
 Then use john to crack the zip password.
 ```shell
-john hash.text --format=PKZIP --wordlist=/root/RockYou/rockyou.txt
+john hash.txt --format=PKZIP --wordlist=/root/RockYou/rockyou.txt
 ```
 ![Zip](/assets/img/Pass/zippy.png)
 
