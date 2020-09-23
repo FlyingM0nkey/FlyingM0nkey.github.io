@@ -152,7 +152,7 @@ john id_john --wordlist=rockyou.txt
 
 John cracks the password to ***superpassword*** so this key may now be used to login.
 
-Top tip from Mr. Ippsec (Tenten video) is to use sshng2john if you are using JumboJohn to crack. <https://github.com/stricture/hashstack-server-plugin-jtr/blob/master/scrapers/sshng2john.py>
+Top tip from Mr. Ippsec in his [Tenten video](https://www.youtube.com/watch?v=A4U3xiRWfsU) is to use [sshng2john](https://github.com/stricture/hashstack-server-plugin-jtr/blob/master/scrapers/sshng2john.py) if you are using JumboJohn to crack. 
 
 
 
