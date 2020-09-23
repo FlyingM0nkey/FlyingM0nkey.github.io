@@ -125,7 +125,7 @@ hashcat -a 0 -m 17200 hashes.txt rockyou.txt
 
 ## Linux Passwords
 
-Linux passwords are kept in the /etc/shadow file, not the /etc/passwd file. To crack them easily, wi need to "unshadow" them. For that we will need the passwd and the shadow file. I've created a user *unicorn* with password *password* to illustrate.
+Linux passwords are kept in the /etc/shadow file, not the /etc/passwd file. To crack them easily, we need to "unshadow" them. For that we will need the passwd and the shadow file. I've created a user *unicorn* with password *password* to illustrate.
 ```shell
 unshadow test_passwd.txt test_shadow.txt > test.txt
 hashcat --force -m 1800 -a 0 test.txt rockyou.txt
@@ -133,6 +133,28 @@ hashcat --force -m 1800 -a 0 test.txt rockyou.txt
 
 ![Shadow1](/assets/img/Pass/shadow1.png)
 ![Shadow2](/assets/img/Pass/shadow2.png)
+
+## SSH Key Encryption
+
+Getting an SSH key to a machine is always pretty cool. Well, until you try to use it and find out it's encrypted and you don't have the password. John The Ripper comes to our rescue again. Like a zip file, we need to get the file into a format that JTR can read, so we will use ssh2john.py.
+
+Here we have recovered a private key, but it clearly says it's encrypted. If we try to use it, we will be asked for a password.
+
+![SSH1](/assets/img/Pass/ssh1.png)
+
+I can't remember where ssh2john lives, so I locate it and use it's full path from my RockYou directory. Once ssh2john has run, we can use JTR to crack the password as usual.
+```shell
+/usr/share/john/ssh2john.py
+python /usr/share/john/ssh2john.py id_rsa > id_john
+```
+
+![SSH2](/assets/img/Pass/ssh2.png)
+
+John cracks the password to ***superpassword*** so this key may now be used to login.
+
+Top tip from Mr. Ippsec (Tenten video) is to use sshng2john if you are using JumboJohn to crack. <https://github.com/stricture/hashstack-server-plugin-jtr/blob/master/scrapers/sshng2john.py>
+
+
 
 
 
