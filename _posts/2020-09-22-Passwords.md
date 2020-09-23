@@ -61,14 +61,14 @@ If the service you are attacking is running on a *non-standard* port, you must s
 
 **Options**
 
-..* -l Single Username
-..* -L Username list
-..* -p Password
-..* -P Password list
-..* -t Limit concurrent connections
-..* -V Verbose output
-..* -f Stop on correct login
-..* -s Port
+-l Single Username
+-L Username list
+-p Password
+-P Password list
+-t Limit concurrent connections
+-V Verbose output
+-f Stop on correct login
+-s Port
 
 
 **FTP**
