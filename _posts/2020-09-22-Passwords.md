@@ -18,7 +18,7 @@ echo -n "passw0rd" | md5sum > hash.txt
 
 ![make_hash](/assets/img/Pass/1_make_hash.png)
 
-We know this is an md5 hash, but you'll always have to check the type of hash you are trying to crack. My tool for this is hashid.py (<https://github.com/psypanda/hashID>). I like this tool because it does a good job of identifying the hash and will also give you the Hashcat and JTR code if you ask for it with -m and -j respectively.
+We know this is an md5 hash, but you'll always have to check the type of hash you are trying to crack. My tool for this is [hashid.py](https://github.com/psypanda/hashID). I like this tool because it does a good job of identifying the hash and will also give you the Hashcat and JTR code if you ask for it with -m and -j respectively.
 ```shell
 ./hashid.py -m -j 'bed128365216c019988915ed3add75fb'
 ```
