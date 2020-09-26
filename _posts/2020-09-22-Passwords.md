@@ -123,6 +123,17 @@ Hashcat may also be used to crack the zip password, but the hash may need to be 
 hashcat -a 0 -m 17200 hashes.txt rockyou.txt
 ```
 
+A third, possibly more elegant, solution is fcrackzip. Simply install it with:
+```shell
+sudo apt install fcrackzip
+```
+Then run it. Here I will use the rockyou.txt wordlist again.
+```shell
+fcrackzip -D -p /root/RockYou/rockyou.txt file.zip
+```
+
+![Fcrack](/assets/img/Pass/fcrack.png)
+
 ## Linux Passwords
 
 Linux passwords are kept in the /etc/shadow file, not the /etc/passwd file. To crack them easily, we need to "unshadow" them. For that we will need the passwd and the shadow file. I've created a user *unicorn* with password *password* to illustrate.
