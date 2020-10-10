@@ -25,6 +25,13 @@ We know this is an md5 hash, but you'll always have to check the type of hash yo
 
 ![Hash_id](/assets/img/Pass/2_hashid.py.png)
 
+Another method to quickly identify the hash I stole from Ippsec:
+```shell
+hashcat --example-hashes | grep '$2a$05' -B5
+```
+
+![Ippy](/assets/img/Pass/ippy.png)
+
 We get a list of possible hashes so a bit of common sense comes into play, here. The first Hashcat code is for a raw md5, which is what we know it is, and it has a code of 0. 
 
 ![Cat](/assets/img/Pass/cat_logo.png)
