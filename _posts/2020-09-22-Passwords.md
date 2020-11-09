@@ -79,7 +79,7 @@ If the service you are attacking is running on a *non-standard* port, you must s
 
 **HTTP(s) Post Form**
 ```shell
-hydra -l admin -P rockyou.txt$ip http-post-form '<Login Page>:<Request Body>:<Error Message>' -V
+hydra -l admin -P rockyou.txt $ip http-post-form '<Login Page>:<Request Body>:<Error Message>' -V
 ```
 
 **FTP**
