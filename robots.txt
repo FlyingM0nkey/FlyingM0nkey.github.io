@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /norobots/
+
+Sitemap: protocol://FlyingM0nkey.github.io/sitemap.xml
